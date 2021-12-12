@@ -12,9 +12,9 @@ namespace PrototipoERP.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
-        public IEntityDao<Usuario> _usuarioDao { get; }
+        public IUsuarioDao<Usuario> _usuarioDao { get; }
 
-        public UsuariosController(IEntityDao<Usuario> usuarioDao) =>
+        public UsuariosController(IUsuarioDao<Usuario> usuarioDao) =>
             _usuarioDao = usuarioDao;
 
         // GET: api/usuarios

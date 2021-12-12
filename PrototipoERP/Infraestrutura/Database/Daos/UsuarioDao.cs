@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PrototipoERP.Infraestrutura.Database.Daos
 {
-    public class UsuarioDao : IEntityDao<Usuario>
+    public class UsuarioDao : IUsuarioDao<Usuario>
     {
         public ApplicationDbContext _dbContext { get; }
         public UsuarioDao(ApplicationDbContext dbContext) =>
@@ -44,5 +44,11 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
 
         public async Task<bool> Exists(long id) =>
             await _dbContext.Usuarios.AnyAsync(x => x.Id == id);
+
+        public async Task<Usuario> ObterUsuarioPorNomeSenha(string nome, string senha) =>
+            await _dbContext.Usuarios
+                .FirstOrDefaultAsync(x => 
+                    x.Nome == nome && 
+                    x.Senha == senha);
     }
 }

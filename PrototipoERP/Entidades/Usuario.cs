@@ -7,7 +7,7 @@ namespace PrototipoERP.Entidades
         public string Nome { get; set; }
         public string Senha { get; set; }
 
-        [JsonIgnore]
+        [System.Text.Json.Serialization.JsonIgnore]
         public List<Lembrete> Lembretes { get; set; }
     }
 }

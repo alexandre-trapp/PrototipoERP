@@ -7,7 +7,7 @@ namespace PrototipoERP.Infraestrutura.IoC
     {
         public static void ConfigurarDependencias(this IServiceCollection services)
         {
-            services.AddScoped<IEntityDao<Usuario>, UsuarioDao>();
+            services.AddScoped<IUsuarioDao<Usuario>, UsuarioDao>();
             services.AddScoped<ILembreteDao<Lembrete>, LembreteDao>();
         }
     }
