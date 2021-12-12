@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using PrototipoERP.Entidades;
 using Microsoft.AspNetCore.Mvc;
-using PrototipoERP.Configuration;
-using PrototipoERP.Entidades;
+using Microsoft.AspNetCore.Authorization;
+using PrototipoERP.Configuracoes.Criptografia;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
