@@ -1,6 +1,5 @@
 using System.Text;
 using Microsoft.OpenApi.Models;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PrototipoERP.Configuracoes.Database;
 using PrototipoERP.Configuracoes.Criptografia;
@@ -91,5 +90,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.ApplyMigrations();
 
 app.Run();
