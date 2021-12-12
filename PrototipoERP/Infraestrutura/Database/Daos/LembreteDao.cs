@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PrototipoERP.Infraestrutura.Database.Daos
 {
-    public class LembreteDao : ILembreteDao<Entity>
+    public class LembreteDao : ILembreteDao<Lembrete>
     {
         public ApplicationDbContext _dbContext { get; }
         public LembreteDao(ApplicationDbContext dbContext) =>
