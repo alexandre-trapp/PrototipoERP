@@ -1,6 +1,6 @@
 ﻿namespace PrototipoERP.Entidades
 {
-    public class LembreteCriadoResponse
+    public class LembreteResponse
     {
         public long Id { get; set; }
         public DateTime DataHora { get; set; }

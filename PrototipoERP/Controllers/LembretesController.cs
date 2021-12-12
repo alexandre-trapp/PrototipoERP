@@ -113,7 +113,7 @@ namespace PrototipoERP.Controllers
         // POST: api/lembretes
         [HttpPost("lembretes")]
         [Authorize]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Lembrete))]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(LembreteResponse))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
@@ -139,7 +139,7 @@ namespace PrototipoERP.Controllers
                 await _lembreteDao.Create(novoLembrete);
 
                 return Created("api/lembretes/1",
-                    new LembreteCriadoResponse
+                    new LembreteResponse
                     {
                         Id = novoLembrete.Id,
                         Texto = novoLembrete.Texto,
@@ -164,11 +164,11 @@ namespace PrototipoERP.Controllers
         // PUT: api/lembretes/1
         [HttpPut("lembretes/{id}")]
         [Authorize]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
-        public async Task<ActionResult<Lembrete>> AtualizarLembrete([FromBody] Lembrete lembrete)
+        public async Task<ActionResult> AtualizarLembrete([FromBody] Lembrete lembrete)
         {
             try
             {
@@ -181,7 +181,8 @@ namespace PrototipoERP.Controllers
                         });
 
                 await _lembreteDao.Update(lembrete);
-                return Ok(lembrete);
+
+                return NoContent();
             }
             catch (OperationCanceledException opx)
             {
