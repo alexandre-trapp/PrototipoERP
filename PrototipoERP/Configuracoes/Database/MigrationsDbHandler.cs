@@ -2,7 +2,7 @@
 
 namespace PrototipoERP.Configuracoes.Database
 {
-    public static class MigrationsDb
+    public static class MigrationsDbHandler
     {
         public static void ApplyMigrations(this WebApplication app)
         {
