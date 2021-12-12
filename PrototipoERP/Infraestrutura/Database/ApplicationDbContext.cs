@@ -9,12 +9,8 @@ namespace PrototipoERP.Infraestrutura.Database
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Lembrete> Lembretes { get; set; }
 
-        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
             optionsBuilder.UseMySQL(ConnectionDb.ConnectionString);
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
