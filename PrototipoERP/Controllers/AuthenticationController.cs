@@ -11,12 +11,14 @@ namespace PrototipoERP.Controllers
         [HttpPost]
         [Route("auth")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
-        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(object))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(object))]
-        public async Task<ActionResult<dynamic>> Authenticate([FromBody] Usuario usuario)
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
+        public ActionResult<dynamic> Authenticate([FromBody] Usuario usuario)
         {
             try
             {
+                throw new Exception("ronaldo");
+
                 // Recupera o usuário
                 //var user = UserRepository.Get(usuario.Username, usuario.Password);
 
@@ -43,7 +45,7 @@ namespace PrototipoERP.Controllers
 
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
-                    new { message = ex.Message });
+                    new ResponseError { Message = ex.Message });
             }
         }
     }

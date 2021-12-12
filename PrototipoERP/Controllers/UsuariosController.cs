@@ -12,8 +12,8 @@ namespace PrototipoERP.Controllers
         // GET: api/usuarios
         [HttpGet("usuarios")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
-        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(object))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(object))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<IEnumerable<Usuario>>> ObterUsuarios()
         {
             try
@@ -40,15 +40,15 @@ namespace PrototipoERP.Controllers
 
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
-                    new { message = ex.Message });
+                    new ResponseError { Message = ex.Message });
             }
         }
 
         // GET: api/usuarios/{1}
         [HttpGet("usuarios/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
-        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(object))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(object))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<Usuario>> ObterUsuarioPorId(long id)
         {
             try
@@ -66,15 +66,15 @@ namespace PrototipoERP.Controllers
 
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
-                    new { message = ex.Message });
+                    new ResponseError { Message = ex.Message });
             }
         }
 
         // POST: api/usuarios
         [HttpPost("usuarios")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Usuario))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(object))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(object))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<Usuario>> CadastrarUsuario([FromBody] Usuario usuario)
         {
             try
@@ -100,8 +100,8 @@ namespace PrototipoERP.Controllers
         // PUT: api/usuarios/1
         [HttpPut("usuarios/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(object))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(object))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<Usuario>> AtualizarUsuario(
             long id, [FromBody] Usuario usuario)
         {
@@ -121,7 +121,7 @@ namespace PrototipoERP.Controllers
 
                 return StatusCode(
                      StatusCodes.Status500InternalServerError,
-                     new { message = ex.Message });
+                     new ResponseError { Message = ex.Message });
             }
         }
     }

@@ -12,8 +12,8 @@ namespace PrototipoERP.Controllers
         // GET: api/lembretes
         [HttpGet("lembretes")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
-        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(object))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(object))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<IEnumerable<Lembrete>>> ObterLembretes()
         {
             try
@@ -40,15 +40,15 @@ namespace PrototipoERP.Controllers
 
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
-                    new { message = ex.Message });
+                    new ResponseError { Message = ex.Message });
             }
         }
 
         // GET: api/lembretes
         [HttpGet("usuario/{id}/lembretes")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
-        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(object))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(object))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<IEnumerable<Lembrete>>> ObterLembretesPorUsuario(long id)
         {
             try
@@ -75,15 +75,15 @@ namespace PrototipoERP.Controllers
 
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
-                    new { message = ex.Message });
+                    new ResponseError { Message = ex.Message });
             }
         }
 
         // POST: api/lembretes
         [HttpPost("lembretes")]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Lembrete))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(object))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(object))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<Lembrete>> CadastrarLembrete([FromBody] Lembrete lembrete)
         {
             try
@@ -102,15 +102,15 @@ namespace PrototipoERP.Controllers
 
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
-                    new { message = ex.Message });
+                    new ResponseError { Message = ex.Message });
             }
         }
 
         // PUT: api/lembretes/1
         [HttpPut("lembretes/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(object))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(object))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<Lembrete>> AtualizarLembrete(
             long id, [FromBody] Lembrete lembrete)
         {
@@ -130,7 +130,7 @@ namespace PrototipoERP.Controllers
 
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
-                    new { message = ex.Message });
+                    new ResponseError { Message = ex.Message });
             }
         }
     }
