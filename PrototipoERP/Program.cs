@@ -1,7 +1,6 @@
 using System.Text;
 using PrototipoERP.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Swashbuckle.Swagger;
 using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
@@ -22,7 +21,7 @@ builder.Services.AddSwaggerGen(c =>
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,
         Scheme = "Bearer"
-    }); ;
+    });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement()
     {
