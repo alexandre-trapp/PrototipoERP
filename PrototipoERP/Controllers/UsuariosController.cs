@@ -10,6 +10,8 @@ namespace PrototipoERP.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
+        private static byte[] Salt = Argon2EncryptHash.CreateSalt();
+
         // GET: api/usuarios
         [HttpGet("usuarios")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
@@ -80,10 +82,9 @@ namespace PrototipoERP.Controllers
         {
             try
             {
-                var salt = Argon2EncryptHash.CreateSalt();
-                var hash = Argon2EncryptHash.HashPassword(usuario.Senha, salt);
+                var hash = Argon2EncryptHash.HashPassword(usuario.Senha, Salt);
 
-                Console.WriteLine($"salt: {Convert.ToBase64String(salt)}");
+                Console.WriteLine($"salt: {Convert.ToBase64String(Salt)}");
                 Console.WriteLine($"hash password {usuario.Senha}: {Convert.ToBase64String(hash)}");
 
                 return Created("api/usuarios/1",
