@@ -170,19 +170,14 @@ namespace PrototipoERP.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
-        public async Task<ActionResult> AtualizarLembrete([FromBody] Lembrete lembrete)
+        public async Task<ActionResult> AtualizarLembrete(long id, AlteracaoTextoLembreteDto textoLembrete)
         {
             try
             {
-                if (!await _usuarioDao.Exists(lembrete.UsuarioId))
-                    return StatusCode(
-                        StatusCodes.Status400BadRequest,
-                        new ResponseError
-                        {
-                            Message = $"Usuário com id {lembrete.UsuarioId} não encontrado na base de dados para atualização do lembrete."
-                        });
+                var lembreteExistente = await _lembreteDao.GetById(id) as Lembrete;
+                lembreteExistente.Texto = textoLembrete.Texto;
 
-                await _lembreteDao.Update(lembrete);
+                await _lembreteDao.Update(lembreteExistente);
 
                 return NoContent();
             }
