@@ -1,30 +1,48 @@
 using System.Text;
 using PrototipoERP.Configuration;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.Swagger;
 using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(x =>
-x.AddSecurityRequirement(new OpenApiSecurityRequirement
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Prototipo ERP", Version = "v1" });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
+        Description = $"JWT Authorization Header usando o schema Bearer.{Environment.NewLine}{Environment.NewLine}" +
+                      $"Obtenha o token através da api: 'api/auth', digite 'Bearer' [espaço] e, em seguida, seu token na entrada de texto abaixo.{Environment.NewLine}{Environment.NewLine}" +
+                       "Exemplo: 'Bearer 12345abcdef'",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    }); ;
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+    {
+    {
+        new OpenApiSecurityScheme
         {
-            new OpenApiSecurityScheme
+        Reference = new OpenApiReference
             {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
+            Type = ReferenceType.SecurityScheme,
+            Id = "Bearer"
             },
-            new string[] {}
+            Scheme = "oauth2",
+            Name = "Bearer",
+            In = ParameterLocation.Header,
+
+        },
+        new List<string>()
         }
-    })
-);
+    });
+});
 
 builder.Services.AddCors();
 
