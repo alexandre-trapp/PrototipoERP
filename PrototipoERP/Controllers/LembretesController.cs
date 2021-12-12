@@ -14,6 +14,7 @@ namespace PrototipoERP.Controllers
         [HttpGet("lembretes")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<IEnumerable<Lembrete>>> ObterLembretes()
@@ -50,6 +51,7 @@ namespace PrototipoERP.Controllers
         [HttpGet("usuario/{id}/lembretes")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<IEnumerable<Lembrete>>> ObterLembretesPorUsuario(long id)
@@ -86,6 +88,7 @@ namespace PrototipoERP.Controllers
         [HttpPost("lembretes")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Lembrete))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<Lembrete>> CadastrarLembrete([FromBody] Lembrete lembrete)
@@ -114,6 +117,7 @@ namespace PrototipoERP.Controllers
         [HttpPut("lembretes/{id}")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<Lembrete>> AtualizarLembrete(

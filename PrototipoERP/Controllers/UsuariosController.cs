@@ -17,6 +17,7 @@ namespace PrototipoERP.Controllers
         [HttpGet("usuarios")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<IEnumerable<Usuario>>> ObterUsuarios()
@@ -53,6 +54,7 @@ namespace PrototipoERP.Controllers
         [HttpGet("usuarios/{id}")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<Usuario>> ObterUsuarioPorId(long id)
@@ -80,6 +82,7 @@ namespace PrototipoERP.Controllers
         [HttpPost("usuarios")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UsuarioCriadoResponse))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<Usuario>> CadastrarUsuario([FromBody] Usuario usuario)
@@ -112,6 +115,7 @@ namespace PrototipoERP.Controllers
         [HttpPut("usuarios/{id}")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<Usuario>> AtualizarUsuario(
