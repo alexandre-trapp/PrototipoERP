@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace PrototipoERP.Configuracoes.Database
+namespace PrototipoERP.Configuracoes.Database.EntitiesConfiguration
 {
     public class UsuarioEntityConfiguration : IEntityTypeConfiguration<Usuario>
     {

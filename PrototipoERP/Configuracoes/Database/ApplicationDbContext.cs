@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PrototipoERP.Entidades;
+﻿using PrototipoERP.Entidades;
+using Microsoft.EntityFrameworkCore;
+using PrototipoERP.Configuracoes.Database.EntitiesConfiguration;
 
 namespace PrototipoERP.Configuracoes.Database
 {
