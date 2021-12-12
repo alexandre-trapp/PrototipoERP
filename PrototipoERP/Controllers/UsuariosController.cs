@@ -118,8 +118,7 @@ namespace PrototipoERP.Controllers
             try
             {
                 await _usuarioDao.Update(usuario);
-
-                return Ok(usuario); ;
+                return Ok(usuario);
             }
             catch (OperationCanceledException opx)
             {

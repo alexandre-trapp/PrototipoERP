@@ -18,7 +18,7 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
         public async Task Update(Entity entity)
         {
             if (entity.Id <= 0)
-                throw new OperationCanceledException("Entity id null or zero invalid to update on database");
+                throw new OperationCanceledException($"Id do lembrete={entity.Id} inválido para atualização na base de dados.");
 
             _dbContext.Update(entity);
             await _dbContext.SaveChangesAsync();
@@ -53,5 +53,8 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
 
             return lembretes;
         }
+
+        public async Task<bool> Exists(long id) =>
+            await _dbContext.Lembretes.AnyAsync(x => x.Id == id);
     }
 }
