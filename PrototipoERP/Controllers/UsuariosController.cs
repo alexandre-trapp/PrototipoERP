@@ -74,7 +74,7 @@ namespace PrototipoERP.Controllers
 
         // POST: api/usuarios
         [HttpPost("usuarios")]
-        [Authorize]
+        [AllowAnonymous]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UsuarioCriadoResponse))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
