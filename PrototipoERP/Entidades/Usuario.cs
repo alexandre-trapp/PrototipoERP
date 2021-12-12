@@ -1,6 +1,6 @@
 ﻿namespace PrototipoERP.Entidades
 {
-    public class Usuarios
+    public class Usuario
     {
         public long Id { get; set; }
         public string Nome { get; set; }

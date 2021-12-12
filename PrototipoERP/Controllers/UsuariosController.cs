@@ -11,22 +11,22 @@ namespace PrototipoERP.Controllers
     {
         // GET: api/usuarios
         [HttpGet("usuarios")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuarios))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
-        public async Task<ActionResult<IEnumerable<Usuarios>>> ObterUsuarios()
+        public async Task<ActionResult<IEnumerable<Usuario>>> ObterUsuarios()
         {
             try
             {
-                return Ok(new List<Usuarios>
+                return Ok(new List<Usuario>
                 {
-                    new Usuarios
+                    new Usuario
                     {
                         Id = 1,
                         Nome = "ronaldo",
                         Senha = "123"
                     },
-                    new Usuarios
+                    new Usuario
                     {
                         Id = 2,
                         Nome = "trapp",
@@ -49,14 +49,14 @@ namespace PrototipoERP.Controllers
 
         // GET: api/usuarios/{1}
         [HttpGet("usuarios/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuarios))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
-        public async Task<ActionResult<Usuarios>> ObterUsuarioPorId(long id)
+        public async Task<ActionResult<Usuario>> ObterUsuarioPorId(long id)
         {
             try
             {
-                return Ok(new Usuarios
+                return Ok(new Usuario
                 {
                     Id = 1,
                     Nome = "ronaldo",
@@ -78,15 +78,15 @@ namespace PrototipoERP.Controllers
 
         // POST: api/usuarios
         [HttpPost("usuarios")]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Usuarios))]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Usuario))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
-        public async Task<ActionResult<Usuarios>> CadastrarUsuario([FromBody] Usuarios usuario)
+        public async Task<ActionResult<Usuario>> CadastrarUsuario([FromBody] Usuario usuario)
         {
             try
             {
                 return Created("api/usuarios/1",
-                    new Usuarios
+                    new Usuario
                     {
                         Id = 1,
                         Nome = "ronaldo",
@@ -108,16 +108,16 @@ namespace PrototipoERP.Controllers
 
         // PUT: api/usuarios/1
         [HttpPut("usuarios/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuarios))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
-        public async Task<ActionResult<Usuarios>> AtualizarUsuario(
-            long id, [FromBody] Usuarios usuario)
+        public async Task<ActionResult<Usuario>> AtualizarUsuario(
+            long id, [FromBody] Usuario usuario)
         {
             try
             {
                 return Ok(
-                    new Usuarios
+                    new Usuario
                     {
                         Id = 1,
                         Nome = "teste",

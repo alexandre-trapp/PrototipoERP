@@ -11,26 +11,26 @@ namespace PrototipoERP.Controllers
     {
         // GET: api/lembretes
         [HttpGet("lembretes")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembretes))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
-        public async Task<ActionResult<IEnumerable<Lembretes>>> ObterLembretes()
+        public async Task<ActionResult<IEnumerable<Lembrete>>> ObterLembretes()
         {
             try
             {
-                return Ok(new List<Lembretes>
+                return Ok(new List<Lembrete>
                 {
-                    new Lembretes
+                    new Lembrete
                     {
                         UsuarioId = 1,
                         DataHora = DateTime.Now,
-                        Lembrete = "lembrete do ronaldo"
+                        TextoLembrete = "lembrete do ronaldo"
                     },
-                    new Lembretes
+                    new Lembrete
                     {
                         UsuarioId = 2,
                         DataHora = DateTime.Now,
-                        Lembrete = "lembrete do trapp"
+                        TextoLembrete = "lembrete do trapp"
                     }
                 });
             }
@@ -49,26 +49,26 @@ namespace PrototipoERP.Controllers
 
         // GET: api/lembretes
         [HttpGet("usuario/{id}/lembretes")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembretes))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
-        public async Task<ActionResult<IEnumerable<Lembretes>>> ObterLembretesPorUsuario(long id)
+        public async Task<ActionResult<IEnumerable<Lembrete>>> ObterLembretesPorUsuario(long id)
         {
             try
             {
-                return Ok(new List<Lembretes>
+                return Ok(new List<Lembrete>
                 {
-                    new Lembretes
+                    new Lembrete
                     {
                         UsuarioId = 1,
                         DataHora = DateTime.Now,
-                        Lembrete = "lembrete do ronaldo"
+                        TextoLembrete = "lembrete do ronaldo"
                     },
-                    new Lembretes
+                    new Lembrete
                     {
                         UsuarioId = 1,
                         DataHora = DateTime.Now,
-                        Lembrete = "lembrete 2 do ronaldo"
+                        TextoLembrete = "lembrete 2 do ronaldo"
                     }
                 });
             }
@@ -87,19 +87,19 @@ namespace PrototipoERP.Controllers
 
         // POST: api/lembretes
         [HttpPost("lembretes")]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Lembretes))]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Lembrete))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
-        public async Task<ActionResult<Lembretes>> CadastrarLembrete([FromBody] Lembretes lembrete)
+        public async Task<ActionResult<Lembrete>> CadastrarLembrete([FromBody] Lembrete lembrete)
         {
             try
             {
                 return Created("api/lembretes/1",
-                    new Lembretes
+                    new Lembrete
                     {
                         UsuarioId = 1,
                         DataHora = DateTime.Now,
-                        Lembrete = "lembrete do ronaldo"
+                        TextoLembrete = "lembrete do ronaldo"
                     });
             }
             catch (Exception ex)
@@ -117,20 +117,20 @@ namespace PrototipoERP.Controllers
 
         // PUT: api/lembretes/1
         [HttpPut("lembretes/{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembretes))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ErrorResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorResponse))]
-        public async Task<ActionResult<Lembretes>> AtualizarLembrete(
-            long id, [FromBody] Lembretes lembrete)
+        public async Task<ActionResult<Lembrete>> AtualizarLembrete(
+            long id, [FromBody] Lembrete lembrete)
         {
             try
             {
                 return Ok(
-                    new Lembretes
+                    new Lembrete
                     {
                         UsuarioId = 1,
                         DataHora = DateTime.Now,
-                        Lembrete = "lembrete do trapp 2"
+                        TextoLembrete = "lembrete do trapp 2"
                     });
             }
             catch (Exception ex)

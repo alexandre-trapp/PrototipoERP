@@ -2,14 +2,14 @@
 
 namespace PrototipoERP.Entidades
 {
-    public class Lembretes
+    public class Lembrete
     {
         public long UsuarioId { get; set; }
 
         [JsonIgnore]
-        public Usuarios Usuario { get; set; }
+        public Usuario Usuario { get; set; }
 
         public DateTime DataHora { get; set; }
-        public string Lembrete { get; set; }
+        public string TextoLembrete { get; set; }
     }
 }
