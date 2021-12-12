@@ -5,7 +5,7 @@ using PrototipoERP.Entidades;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace PrototipoERP.Configuracoes.Criptografia
+namespace PrototipoERP.Infraestrutura.Criptografia
 {
     public static class TokenService
     {

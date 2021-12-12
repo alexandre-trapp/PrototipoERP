@@ -1,8 +1,8 @@
 ﻿using PrototipoERP.Entidades;
 using Microsoft.EntityFrameworkCore;
-using PrototipoERP.Configuracoes.Database.EntitiesConfiguration;
+using PrototipoERP.Infraestrutura.Database.EntitiesConfiguration;
 
-namespace PrototipoERP.Configuracoes.Database
+namespace PrototipoERP.Infraestrutura.Database
 {
     public class ApplicationDbContext : DbContext
     {

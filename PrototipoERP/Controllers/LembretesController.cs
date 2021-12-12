@@ -47,7 +47,7 @@ namespace PrototipoERP.Controllers
             }
         }
 
-        // GET: api/lembretes
+        // GET: api/usuario/1/lembretes
         [HttpGet("usuario/{id}/lembretes")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
@@ -71,6 +71,37 @@ namespace PrototipoERP.Controllers
                         UsuarioId = 1,
                         DataHora = DateTime.Now,
                         TextoLembrete = "lembrete 2 do ronaldo"
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseError { Message = ex.Message });
+            }
+        }
+
+        // GET: api/lembretes/1
+        [HttpGet("lembretes/{id}")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
+        public async Task<ActionResult<Lembrete>> ObterLembretePorId(long id)
+        {
+            try
+            {
+                return Ok(new List<Lembrete>
+                {
+                    new Lembrete
+                    {
+                        UsuarioId = 1,
+                        DataHora = DateTime.Now,
+                        TextoLembrete = "lembrete do ronaldo"
                     }
                 });
             }

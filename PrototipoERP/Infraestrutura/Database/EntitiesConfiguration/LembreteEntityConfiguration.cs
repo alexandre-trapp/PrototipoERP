@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace PrototipoERP.Configuracoes.Database.EntitiesConfiguration
+namespace PrototipoERP.Infraestrutura.Database.EntitiesConfiguration
 {
     public class LembreteEntityConfiguration : IEntityTypeConfiguration<Lembrete>
     {

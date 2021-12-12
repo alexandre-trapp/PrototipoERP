@@ -1,4 +1,4 @@
-﻿namespace PrototipoERP.Configuracoes.Database
+﻿namespace PrototipoERP.Infraestrutura.Database
 {
     public static class ConnectionDb
     {

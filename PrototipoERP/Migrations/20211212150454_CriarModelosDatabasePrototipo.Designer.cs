@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PrototipoERP.Configuracoes.Database;
+using PrototipoERP.Infraestrutura.Database;
 
 namespace PrototipoERP.Migrations
 {

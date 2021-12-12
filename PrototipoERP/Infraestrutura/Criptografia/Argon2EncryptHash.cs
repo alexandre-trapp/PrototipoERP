@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using Konscious.Security.Cryptography;
 
-namespace PrototipoERP.Configuracoes.Criptografia
+namespace PrototipoERP.Infraestrutura.Criptografia
 {
     public static class Argon2EncryptHash
     {

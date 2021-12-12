@@ -1,8 +1,8 @@
 using System.Text;
 using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
-using PrototipoERP.Configuracoes.Database;
-using PrototipoERP.Configuracoes.Criptografia;
+using PrototipoERP.Infraestrutura.Database;
+using PrototipoERP.Infraestrutura.Criptografia;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);

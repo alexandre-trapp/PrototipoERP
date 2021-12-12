@@ -1,6 +1,6 @@
 ﻿using PrototipoERP.Entidades;
 using Microsoft.AspNetCore.Mvc;
-using PrototipoERP.Configuracoes.Criptografia;
+using PrototipoERP.Infraestrutura.Criptografia;
 
 namespace PrototipoERP.Controllers
 {
