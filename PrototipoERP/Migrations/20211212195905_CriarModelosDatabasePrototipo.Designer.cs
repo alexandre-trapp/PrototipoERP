@@ -9,7 +9,7 @@ using PrototipoERP.Infraestrutura.Database;
 namespace PrototipoERP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211212195534_CriarModelosDatabasePrototipo")]
+    [Migration("20211212195905_CriarModelosDatabasePrototipo")]
     partial class CriarModelosDatabasePrototipo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,8 @@ namespace PrototipoERP.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
 
                     b.Property<DateTime>("DataHora")
                         .HasColumnType("DATETIME")
@@ -38,8 +39,7 @@ namespace PrototipoERP.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("usuario_id");
 
-                    b.HasKey("Id")
-                        .HasName("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("Id");
 
@@ -52,7 +52,8 @@ namespace PrototipoERP.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("id");
 
                     b.Property<string>("Nome")
                         .IsRequired()

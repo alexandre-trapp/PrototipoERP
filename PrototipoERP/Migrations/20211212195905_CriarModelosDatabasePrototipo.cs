@@ -12,21 +12,21 @@ namespace PrototipoERP.Migrations
                 name: "usuarios",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     nome = table.Column<string>(type: "VARCHAR(20)", nullable: false),
                     senha = table.Column<string>(type: "VARCHAR(50)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("id", x => x.Id);
+                    table.PrimaryKey("id", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "lembretes",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     usuario_id = table.Column<long>(type: "bigint", nullable: false),
                     data_hora = table.Column<DateTime>(type: "DATETIME", nullable: false),
@@ -34,19 +34,19 @@ namespace PrototipoERP.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("id", x => x.Id);
+                    table.PrimaryKey("PK_lembretes", x => x.id);
                     table.ForeignKey(
                         name: "FK_lembretes_usuarios_usuario_id",
                         column: x => x.usuario_id,
                         principalTable: "usuarios",
-                        principalColumn: "Id",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_lembretes_Id",
+                name: "IX_lembretes_id",
                 table: "lembretes",
-                column: "Id");
+                column: "id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_lembretes_usuario_id",
@@ -54,9 +54,9 @@ namespace PrototipoERP.Migrations
                 column: "usuario_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_usuarios_Id",
+                name: "IX_usuarios_id",
                 table: "usuarios",
-                column: "Id");
+                column: "id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_usuarios_nome_senha",

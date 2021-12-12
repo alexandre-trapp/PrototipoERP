@@ -13,6 +13,10 @@ namespace PrototipoERP.Infraestrutura.Database.EntitiesConfiguration
             builder.HasIndex(p => p.Id);
             builder.HasIndex(p => new { p.Nome, p.Senha});
 
+            builder.Property(p => p.Id).
+                HasColumnName("id")
+                .IsRequired();
+
             builder.Property(p => p.Nome)
                 .HasColumnName("nome")
                 .HasColumnType("VARCHAR(20)")

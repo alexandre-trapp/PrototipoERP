@@ -9,10 +9,14 @@ namespace PrototipoERP.Infraestrutura.Database.EntitiesConfiguration
         public void Configure(EntityTypeBuilder<Lembrete> builder)
         {
             builder.ToTable("lembretes");
-            builder.HasKey(p => p.Id).HasName("id");
+            builder.HasKey(p => p.Id);
             builder.HasIndex(p => p.Id);
             builder.HasIndex(p => p.UsuarioId);
-            
+
+            builder.Property(p => p.Id).
+                HasColumnName("id")
+                .IsRequired();
+
             builder.Property(p => p.Texto)
                 .HasColumnName("texto")
                 .HasColumnType("VARCHAR(250)")
