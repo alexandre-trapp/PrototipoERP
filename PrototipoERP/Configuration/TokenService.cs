@@ -9,7 +9,7 @@ namespace PrototipoERP.Configuration
 {
     public static class TokenService
     {
-        public static string GenerateToken(Usuario usuario)
+        public static TokenInfo GenerateToken(Usuario usuario)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
@@ -25,7 +25,14 @@ namespace PrototipoERP.Configuration
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return tokenHandler.WriteToken(token);
+
+            return new TokenInfo
+            {
+                UsuarioId = usuario.Id,
+                UsuarioNome = usuario.Nome,
+                Token = tokenHandler.WriteToken(token),
+                DataExpiracao = tokenDescriptor.Expires
+            }; 
         }
     }
 }

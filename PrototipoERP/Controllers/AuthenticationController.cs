@@ -10,15 +10,13 @@ namespace PrototipoERP.Controllers
     {
         [HttpPost]
         [Route("auth")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioAutenticado))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TokenInfo))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public ActionResult<dynamic> Authenticate([FromBody] Usuario usuario)
         {
             try
             {
-                throw new Exception("ronaldo");
-
                 // Recupera o usuário
                 //var user = UserRepository.Get(usuario.Username, usuario.Password);
 
@@ -27,18 +25,13 @@ namespace PrototipoERP.Controllers
                     return NotFound(new { message = "Usuário ou senha inválidos" });
 
                 // Gera o Token
-                var token = TokenService.GenerateToken(usuario);
+                var tokenInfo = TokenService.GenerateToken(usuario);
 
                 // Oculta a senha
                 usuario.Senha = string.Empty;
 
                 // Retorna os dados
-                return new UsuarioAutenticado
-                {
-                    UsuarioId = usuario.Id,
-                    UsuarioNome = usuario.Nome,
-                    Token = token
-                };
+                return tokenInfo;
             }
             catch (Exception ex)
             {
