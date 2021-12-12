@@ -141,6 +141,7 @@ namespace PrototipoERP.Controllers
                 return Created("api/lembretes/1",
                     new Lembrete
                     {
+                        Id = novoLembrete.Id,
                         UsuarioId = novoLembrete.UsuarioId,
                         DataHora = novoLembrete.DataHora,
                         Texto = novoLembrete.Texto
