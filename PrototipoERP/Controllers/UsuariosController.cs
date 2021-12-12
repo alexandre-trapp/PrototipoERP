@@ -115,17 +115,25 @@ namespace PrototipoERP.Controllers
         }
 
         // PUT: api/usuarios/1
-        [HttpPut("usuarios")]
+        [HttpPut("usuarios/{id}")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
-        public async Task<ActionResult<Usuario>> AtualizarUsuario([FromBody] Usuario usuario)
+        public async Task<ActionResult<Usuario>> AtualizarUsuario(long id, [FromBody] UsuarioDto usuario)
         {
             try
             {
-                await _usuarioDao.Update(usuario);
+                var usuarioExistente = await _usuarioDao.GetById(id) as Usuario;
+
+                var hash = Argon2EncryptHash.HashPassword(usuario.Senha);
+                var hashSenhaBase64 = Convert.ToBase64String(hash);
+
+                usuarioExistente.Senha = hashSenhaBase64;
+                usuarioExistente.Nome = usuario.Nome;
+
+                await _usuarioDao.Update(usuarioExistente);
                 return Ok(usuario);
             }
             catch (OperationCanceledException opx)
