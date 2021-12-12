@@ -9,7 +9,7 @@ using PrototipoERP.Infraestrutura.Database;
 namespace PrototipoERP.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211212195149_CriarModelosDatabasePrototipo")]
+    [Migration("20211212195534_CriarModelosDatabasePrototipo")]
     partial class CriarModelosDatabasePrototipo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,7 +35,8 @@ namespace PrototipoERP.Migrations
                         .HasColumnName("texto");
 
                     b.Property<long>("UsuarioId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("usuario_id");
 
                     b.HasKey("Id")
                         .HasName("id");

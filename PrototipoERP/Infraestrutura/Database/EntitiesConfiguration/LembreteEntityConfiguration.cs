@@ -23,6 +23,10 @@ namespace PrototipoERP.Infraestrutura.Database.EntitiesConfiguration
                 .HasColumnType("DATETIME")
                 .IsRequired();
 
+            builder.Property(p => p.UsuarioId)
+                .HasColumnName("usuario_id")
+                .IsRequired();
+
             builder
                .HasOne(p => p.Usuario)
                .WithMany(usuario => usuario.Lembretes)

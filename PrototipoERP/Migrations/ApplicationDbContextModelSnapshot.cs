@@ -33,7 +33,8 @@ namespace PrototipoERP.Migrations
                         .HasColumnName("texto");
 
                     b.Property<long>("UsuarioId")
-                        .HasColumnType("bigint");
+                        .HasColumnType("bigint")
+                        .HasColumnName("usuario_id");
 
                     b.HasKey("Id")
                         .HasName("id");

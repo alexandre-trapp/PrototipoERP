@@ -28,7 +28,7 @@ namespace PrototipoERP.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    UsuarioId = table.Column<long>(type: "bigint", nullable: false),
+                    usuario_id = table.Column<long>(type: "bigint", nullable: false),
                     data_hora = table.Column<DateTime>(type: "DATETIME", nullable: false),
                     texto = table.Column<string>(type: "VARCHAR(250)", nullable: false)
                 },
@@ -36,8 +36,8 @@ namespace PrototipoERP.Migrations
                 {
                     table.PrimaryKey("id", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_lembretes_usuarios_UsuarioId",
-                        column: x => x.UsuarioId,
+                        name: "FK_lembretes_usuarios_usuario_id",
+                        column: x => x.usuario_id,
                         principalTable: "usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -49,9 +49,9 @@ namespace PrototipoERP.Migrations
                 column: "Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_lembretes_UsuarioId",
+                name: "IX_lembretes_usuario_id",
                 table: "lembretes",
-                column: "UsuarioId");
+                column: "usuario_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_usuarios_Id",
