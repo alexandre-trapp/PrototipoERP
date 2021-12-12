@@ -73,7 +73,7 @@ namespace PrototipoERP.Controllers
 
         // POST: api/usuarios
         [HttpPost("usuarios")]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Usuario))]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UsuarioCriadoResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<Usuario>> CadastrarUsuario([FromBody] Usuario usuario)
@@ -87,7 +87,7 @@ namespace PrototipoERP.Controllers
                 Console.WriteLine($"hash password {usuario.Senha}: {Convert.ToBase64String(hash)}");
 
                 return Created("api/usuarios/1",
-                    new Usuario
+                    new UsuarioCriadoResponse
                     {
                         Id = 1,
                         Nome = "ronaldo"
