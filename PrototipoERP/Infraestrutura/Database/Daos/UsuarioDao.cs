@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PrototipoERP.Infraestrutura.Database.Daos
 {
-    public class UsuarioDao : IEntityDao
+    public class UsuarioDao : IEntityDao<Usuario>
     {
         public ApplicationDbContext _dbContext { get; }
         public UsuarioDao(ApplicationDbContext dbContext) =>

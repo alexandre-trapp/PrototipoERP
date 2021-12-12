@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using PrototipoERP.Infraestrutura.Criptografia;
+using PrototipoERP.Infraestrutura.Database.Daos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,36 +12,23 @@ namespace PrototipoERP.Controllers
     [ApiController]
     public class UsuariosController : ControllerBase
     {
-        public UsuariosController()
-        {
-        }
+        public IEntityDao<Usuario> _usuarioDao { get; }
+
+        public UsuariosController(IEntityDao<Usuario> usuarioDao) =>
+            _usuarioDao = usuarioDao;
 
         // GET: api/usuarios
         [HttpGet("usuarios")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public async Task<ActionResult<IEnumerable<Usuario>>> ObterUsuarios()
         {
             try
             {
-                return Ok(new List<Usuario>
-                {
-                    new Usuario
-                    {
-                        Id = 1,
-                        Nome = "ronaldo",
-                        Senha = "123"
-                    },
-                    new Usuario
-                    {
-                        Id = 2,
-                        Nome = "trapp",
-                        Senha = "456"
-                    }
-                });
+                var usuarios = await _usuarioDao.GetAll();
+                return Ok(usuarios);
             }
             catch (Exception ex)
             {
@@ -63,12 +51,16 @@ namespace PrototipoERP.Controllers
         {
             try
             {
-                return Ok(new Usuario
-                {
-                    Id = 1,
-                    Nome = "ronaldo",
-                    Senha = "123"
-                });
+                var usuario = await _usuarioDao.GetById(id);
+                return Ok(usuario);
+            }
+            catch (OperationCanceledException opx)
+            {
+                Console.WriteLine(opx);
+
+                return StatusCode(
+                    StatusCodes.Status404NotFound,
+                    new ResponseError { Message = opx.Message });
             }
             catch (Exception ex)
             {
@@ -95,11 +87,13 @@ namespace PrototipoERP.Controllers
 
                 Console.WriteLine($"hash password {usuario.Senha}: {Convert.ToBase64String(hash)}");
 
-                return Created("api/usuarios/1",
+                await _usuarioDao.Create(usuario);
+
+                return Created($"api/usuarios/{usuario.Id}",
                     new UsuarioCriadoResponse
                     {
-                        Id = 1,
-                        Nome = "ronaldo"
+                        Id = usuario.Id,
+                        Nome = usuario.Nome
                     });
             }
             catch (Exception ex)
@@ -113,24 +107,27 @@ namespace PrototipoERP.Controllers
         }
 
         // PUT: api/usuarios/1
-        [HttpPut("usuarios/{id}")]
+        [HttpPut("usuarios")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
-        public async Task<ActionResult<Usuario>> AtualizarUsuario(
-            long id, [FromBody] Usuario usuario)
+        public async Task<ActionResult<Usuario>> AtualizarUsuario([FromBody] Usuario usuario)
         {
             try
             {
-                return Ok(
-                    new Usuario
-                    {
-                        Id = 1,
-                        Nome = "teste",
-                        Senha = "123"
-                    });
+                await _usuarioDao.Update(usuario);
+
+                return Ok(usuario); ;
+            }
+            catch (OperationCanceledException opx)
+            {
+                Console.WriteLine(opx);
+
+                return StatusCode(
+                     StatusCodes.Status400BadRequest,
+                     new ResponseError { Message = opx.Message });
             }
             catch (Exception ex)
             {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PrototipoERP.Infraestrutura.Database.Daos
 {
-    public class LembreteDao : ILembreteDao
+    public class LembreteDao : ILembreteDao<Entity>
     {
         public ApplicationDbContext _dbContext { get; }
         public LembreteDao(ApplicationDbContext dbContext) =>
@@ -17,7 +17,7 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
 
         public async Task Update(Entity entity)
         {
-            if (entity.Id == null || entity.Id <= 0)
+            if (entity.Id <= 0)
                 throw new OperationCanceledException("Entity id null or zero invalid to update on database");
 
             _dbContext.Update(entity);

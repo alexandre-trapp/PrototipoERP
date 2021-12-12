@@ -1,4 +1,5 @@
-﻿using PrototipoERP.Infraestrutura.Database.Daos;
+﻿using PrototipoERP.Entidades;
+using PrototipoERP.Infraestrutura.Database.Daos;
 
 namespace PrototipoERP.Infraestrutura.IoC
 {
@@ -6,8 +7,8 @@ namespace PrototipoERP.Infraestrutura.IoC
     {
         public static void ConfigurarDependencias(this IServiceCollection services)
         {
-            services.AddScoped<IEntityDao, UsuarioDao>();
-            services.AddScoped<ILembreteDao, LembreteDao>();
+            services.AddScoped<IEntityDao<Usuario>, UsuarioDao>();
+            services.AddScoped<ILembreteDao<Lembrete>, LembreteDao>();
         }
     }
 }
