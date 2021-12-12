@@ -13,7 +13,7 @@ namespace PrototipoERP.Infraestrutura.Database.EntitiesConfiguration
             builder.HasIndex(p => p.Id);
             builder.HasIndex(p => p.UsuarioId);
             
-            builder.Property(p => p.TextoLembrete).HasColumnType("VARCHAR(250)").IsRequired();
+            builder.Property(p => p.Texto).HasColumnType("VARCHAR(250)").IsRequired();
             builder.Property(p => p.DataHora).HasColumnType("DATETIME").IsRequired();
 
             builder

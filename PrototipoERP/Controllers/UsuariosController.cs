@@ -1,9 +1,9 @@
-﻿using PrototipoERP.Entidades;
+﻿using PrototipoERP.Dtos;
+using PrototipoERP.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using PrototipoERP.Infraestrutura.Criptografia;
 using PrototipoERP.Infraestrutura.Database.Daos;
-using PrototipoERP.Dtos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 

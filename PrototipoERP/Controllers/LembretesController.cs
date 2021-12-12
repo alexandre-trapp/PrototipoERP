@@ -1,4 +1,5 @@
-﻿using PrototipoERP.Entidades;
+﻿using PrototipoERP.Dtos;
+using PrototipoERP.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using PrototipoERP.Infraestrutura.Database.Daos;
@@ -116,7 +117,7 @@ namespace PrototipoERP.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
-        public async Task<ActionResult<Lembrete>> CadastrarLembrete([FromBody] Lembrete lembrete)
+        public async Task<ActionResult<Lembrete>> CadastrarLembrete([FromBody] LembreteDto lembrete)
         {
             try
             {
@@ -128,14 +129,21 @@ namespace PrototipoERP.Controllers
                             Message = $"Usuário com id {lembrete.UsuarioId} não encontrado na base de dados para cadastro do lembrete."
                         });
 
-                await _lembreteDao.Create(lembrete);
+                var novoLembrete = new Lembrete
+                {
+                    UsuarioId = lembrete.UsuarioId,
+                    Texto = lembrete.Texto,
+                    DataHora = DateTime.Now,
+                };
+
+                await _lembreteDao.Create(novoLembrete);
 
                 return Created("api/lembretes/1",
                     new Lembrete
                     {
-                        UsuarioId = 1,
-                        DataHora = DateTime.Now,
-                        TextoLembrete = "lembrete do ronaldo"
+                        UsuarioId = novoLembrete.UsuarioId,
+                        DataHora = novoLembrete.DataHora,
+                        Texto = novoLembrete.Texto
                     });
             }
             catch (Exception ex)
