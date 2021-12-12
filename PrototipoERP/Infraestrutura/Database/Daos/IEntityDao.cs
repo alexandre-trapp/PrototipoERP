@@ -2,7 +2,7 @@
 
 namespace PrototipoERP.Infraestrutura.Database.Daos
 {
-    public interface ILembreteDao
+    public interface IEntityDao
     {
         public Task Create(Entity entity);
         public Task Update(Entity entity);

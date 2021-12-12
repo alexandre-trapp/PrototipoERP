@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using PrototipoERP.Infraestrutura.Database;
 using PrototipoERP.Infraestrutura.Criptografia;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using PrototipoERP.Infraestrutura.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -69,6 +70,8 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddDbContext<ApplicationDbContext>();
 
 builder.Services.AddControllers();
+
+builder.Services.ConfigurarDependencias();
 
 var app = builder.Build();
 
