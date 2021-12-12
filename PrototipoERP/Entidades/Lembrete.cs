@@ -4,6 +4,7 @@ namespace PrototipoERP.Entidades
 {
     public class Lembrete
     {
+        public long Id { get; set; }
         public long UsuarioId { get; set; }
 
         [JsonIgnore]

@@ -1,4 +1,4 @@
-﻿namespace PrototipoERP.Configuration
+﻿namespace PrototipoERP.Configuracoes.Criptografia
 {
     public static class Settings
     {

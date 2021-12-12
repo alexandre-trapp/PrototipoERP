@@ -1,7 +1,9 @@
 using System.Text;
-using PrototipoERP.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using PrototipoERP.Configuracoes.Database;
+using PrototipoERP.Configuracoes.Criptografia;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -64,6 +66,8 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = false
     };
 });
+
+builder.Services.AddDbContext<ApplicationDbContext>();
 
 builder.Services.AddControllers();
 
