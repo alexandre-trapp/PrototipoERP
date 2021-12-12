@@ -35,8 +35,9 @@ namespace PrototipoERP.Controllers
                 // Retorna os dados
                 return new UsuarioAutenticado
                 {
-                    _usuario = usuario,
-                    _token = token
+                    UsuarioId = usuario.Id,
+                    UsuarioNome = usuario.Nome,
+                    Token = token
                 };
             }
             catch (Exception ex)

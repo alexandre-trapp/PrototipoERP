@@ -2,7 +2,8 @@
 {
     public class UsuarioAutenticado
     {
-        public Usuario _usuario { get; set; }
-        public string _token { get; set; }
+        public long UsuarioId { get; set; }
+        public string UsuarioNome { get; set; }
+        public string Token { get; set; }
     }
 }
