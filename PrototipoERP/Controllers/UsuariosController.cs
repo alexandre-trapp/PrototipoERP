@@ -134,7 +134,7 @@ namespace PrototipoERP.Controllers
                 usuarioExistente.Nome = usuario.Nome;
 
                 await _usuarioDao.Update(usuarioExistente);
-                return Ok(usuario);
+                return Ok(usuarioExistente);
             }
             catch (OperationCanceledException opx)
             {
