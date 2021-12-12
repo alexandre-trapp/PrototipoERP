@@ -139,12 +139,16 @@ namespace PrototipoERP.Controllers
                 await _lembreteDao.Create(novoLembrete);
 
                 return Created("api/lembretes/1",
-                    new Lembrete
+                    new LembreteCriadoResponse
                     {
                         Id = novoLembrete.Id,
-                        UsuarioId = novoLembrete.UsuarioId,
+                        Texto = novoLembrete.Texto,
                         DataHora = novoLembrete.DataHora,
-                        Texto = novoLembrete.Texto
+                        Usuario = new UsuarioCriadoResponse
+                        {
+                            Id = novoLembrete.UsuarioId,
+                            Nome = novoLembrete.Usuario.Nome
+                        }
                     });
             }
             catch (Exception ex)
