@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PrototipoERP.Entidades;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -11,6 +12,7 @@ namespace PrototipoERP.Controllers
     {
         // GET: api/lembretes
         [HttpGet("lembretes")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
@@ -46,6 +48,7 @@ namespace PrototipoERP.Controllers
 
         // GET: api/lembretes
         [HttpGet("usuario/{id}/lembretes")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
@@ -81,6 +84,7 @@ namespace PrototipoERP.Controllers
 
         // POST: api/lembretes
         [HttpPost("lembretes")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Lembrete))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
@@ -108,6 +112,7 @@ namespace PrototipoERP.Controllers
 
         // PUT: api/lembretes/1
         [HttpPut("lembretes/{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]

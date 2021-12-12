@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PrototipoERP.Configuration;
 using PrototipoERP.Entidades;
 
@@ -14,6 +15,7 @@ namespace PrototipoERP.Controllers
 
         // GET: api/usuarios
         [HttpGet("usuarios")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
@@ -49,6 +51,7 @@ namespace PrototipoERP.Controllers
 
         // GET: api/usuarios/{1}
         [HttpGet("usuarios/{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
@@ -75,6 +78,7 @@ namespace PrototipoERP.Controllers
 
         // POST: api/usuarios
         [HttpPost("usuarios")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(UsuarioCriadoResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
@@ -106,6 +110,7 @@ namespace PrototipoERP.Controllers
 
         // PUT: api/usuarios/1
         [HttpPut("usuarios/{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Usuario))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
