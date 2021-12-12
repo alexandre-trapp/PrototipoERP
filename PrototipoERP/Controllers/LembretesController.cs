@@ -145,6 +145,14 @@ namespace PrototipoERP.Controllers
                         }
                     });
             }
+            catch (OperationCanceledException opx)
+            {
+                Console.WriteLine(opx);
+
+                return StatusCode(
+                     StatusCodes.Status400BadRequest,
+                     new ResponseError { Message = opx.Message });
+            }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
