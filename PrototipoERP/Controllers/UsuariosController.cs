@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PrototipoERP.Configuration;
 using PrototipoERP.Entidades;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -79,12 +80,17 @@ namespace PrototipoERP.Controllers
         {
             try
             {
+                var salt = Argon2EncryptHash.CreateSalt();
+                var hash = Argon2EncryptHash.HashPassword(usuario.Senha, salt);
+
+                Console.WriteLine($"salt: {Convert.ToBase64String(salt)}");
+                Console.WriteLine($"hash password {usuario.Senha}: {Convert.ToBase64String(hash)}");
+
                 return Created("api/usuarios/1",
                     new Usuario
                     {
                         Id = 1,
-                        Nome = "ronaldo",
-                        Senha = "123"
+                        Nome = "ronaldo"
                     });
             }
             catch (Exception ex)

@@ -1,9 +1,15 @@
-﻿namespace PrototipoERP.Entidades
+﻿using Newtonsoft.Json;
+
+namespace PrototipoERP.Entidades
 {
     public class Usuario
     {
         public long Id { get; set; }
         public string Nome { get; set; }
         public string Senha { get; set; }
+        
+        [JsonIgnore]
+        [JsonProperty(Required = Required.Default)]
+        public string Salt { get; set; }
     }
 }
