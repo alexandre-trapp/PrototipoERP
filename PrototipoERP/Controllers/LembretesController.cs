@@ -12,11 +12,11 @@ namespace PrototipoERP.Controllers
     [ApiController]
     public class LembretesController : ControllerBase
     {
-        private readonly IEntityDao<Usuario> _usuarioDao;
+        private readonly IUsuarioDao<Usuario> _usuarioDao;
         public readonly ILembreteDao<Lembrete> _lembreteDao;
 
         public LembretesController(
-            IEntityDao<Usuario> usuarioDao,
+            IUsuarioDao<Usuario> usuarioDao,
             ILembreteDao<Lembrete> lembreteDao)
         {
             _usuarioDao = usuarioDao;
