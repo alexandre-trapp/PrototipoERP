@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using PrototipoERP.Infraestrutura.Criptografia;
 using PrototipoERP.Infraestrutura.Database.Daos;
+using PrototipoERP.Dtos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -79,20 +80,27 @@ namespace PrototipoERP.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
-        public async Task<ActionResult<Usuario>> CadastrarUsuario([FromBody] Usuario usuario)
+        public async Task<ActionResult<Usuario>> CadastrarUsuario([FromBody] UsuarioDto usuario)
         {
             try
             {
                 var hash = Argon2EncryptHash.HashPassword(usuario.Senha);
+                var hashSenhaBase64 = Convert.ToBase64String(hash);
 
-                Console.WriteLine($"hash password {usuario.Senha}: {Convert.ToBase64String(hash)}");
+                Console.WriteLine($"hash password {usuario.Senha}: {hashSenhaBase64}");
 
-                await _usuarioDao.Create(usuario);
+                var novoUsuario = new Usuario
+                {
+                    Nome = usuario.Nome,
+                    Senha = hashSenhaBase64
+                };
 
-                return Created($"api/usuarios/{usuario.Id}",
+                await _usuarioDao.Create(novoUsuario);
+
+                return Created($"api/usuarios/{novoUsuario.Id}",
                     new UsuarioCriadoResponse
                     {
-                        Id = usuario.Id,
+                        Id = novoUsuario.Id,
                         Nome = usuario.Nome
                     });
             }
