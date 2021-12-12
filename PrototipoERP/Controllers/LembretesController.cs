@@ -121,13 +121,7 @@ namespace PrototipoERP.Controllers
         {
             try
             {
-                if (!await _usuarioDao.Exists(lembrete.UsuarioId))
-                    return StatusCode(
-                        StatusCodes.Status400BadRequest,
-                        new ResponseError
-                        {
-                            Message = $"Usuário com id {lembrete.UsuarioId} não encontrado na base de dados para cadastro do lembrete."
-                        });
+                var usuario = await _usuarioDao.GetById(lembrete.UsuarioId) as Usuario;
 
                 var novoLembrete = new Lembrete
                 {
@@ -146,8 +140,8 @@ namespace PrototipoERP.Controllers
                         DataHora = novoLembrete.DataHora,
                         Usuario = new UsuarioCriadoResponse
                         {
-                            Id = novoLembrete.UsuarioId,
-                            Nome = novoLembrete.Usuario.Nome
+                            Id = usuario.Id,
+                            Nome = usuario.Nome
                         }
                     });
             }
