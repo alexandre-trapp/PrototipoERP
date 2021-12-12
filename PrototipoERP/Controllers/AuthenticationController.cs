@@ -10,7 +10,7 @@ namespace PrototipoERP.Controllers
     {
         [HttpPost]
         [Route("auth")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioAutenticado))]
         [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ResponseError))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
         public ActionResult<dynamic> Authenticate([FromBody] Usuario usuario)
@@ -33,10 +33,10 @@ namespace PrototipoERP.Controllers
                 usuario.Senha = string.Empty;
 
                 // Retorna os dados
-                return new
+                return new UsuarioAutenticado
                 {
-                    user = usuario,
-                    token = token
+                    _usuario = usuario,
+                    _token = token
                 };
             }
             catch (Exception ex)
