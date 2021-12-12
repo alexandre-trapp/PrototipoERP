@@ -27,9 +27,6 @@ namespace PrototipoERP.Controllers
                 // Gera o Token
                 var tokenInfo = TokenService.GenerateToken(usuario);
 
-                // Oculta a senha
-                usuario.Senha = string.Empty;
-
                 // Retorna os dados
                 return tokenInfo;
             }

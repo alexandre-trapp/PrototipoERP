@@ -20,9 +20,11 @@ namespace PrototipoERP.Configuration
                 {
                     new Claim(ClaimTypes.Name, usuario.Nome),
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(30),
+                Expires = DateTime.Now.AddMinutes(30),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
+
+            tokenHandler.SetDefaultTimesOnTokenCreation = false;
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
