@@ -2,6 +2,6 @@
 {
     public static class ConnectionDb
     {
-        public const string ConnectionString = "Server=localhost;Database=mariadbteste;User=root;Password=root;";
+        public const string ConnectionString = "Server=localhost;Database=mariadbteste;User=root;Password=12345;";
     }
 }
