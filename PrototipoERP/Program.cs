@@ -5,14 +5,8 @@ using PrototipoERP.Infraestrutura.Database;
 using PrototipoERP.Infraestrutura.Criptografia;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using PrototipoERP.Infraestrutura.IoC;
-using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.Configure<IISOptions>(o =>
-{
-    o.ForwardClientCertificate = false;
-});
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -30,7 +24,6 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.ApiKey,
         Scheme = "Bearer"
     });
-
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement()
     {
@@ -83,18 +76,8 @@ builder.Services.ConfigurarDependencias();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseCors(x => x
-    .AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader());
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();
