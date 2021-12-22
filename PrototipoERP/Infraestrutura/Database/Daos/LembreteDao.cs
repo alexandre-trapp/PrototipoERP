@@ -42,7 +42,7 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
                                 @"SELECT a.id Id,
                                          a.usuario_id UsuarioId, 
                                          a.texto Texto,
-                                         a.data_hora DataHora
+                                         a.data_hora DataHora,
                                          b.nome Usuario
                                   FROM lembretes a
                                        INNER JOIN usuarios b ON(b.id = a.usuario_id)");
