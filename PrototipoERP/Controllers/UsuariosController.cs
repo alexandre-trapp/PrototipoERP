@@ -51,7 +51,11 @@ namespace PrototipoERP.Controllers
         {
             try
             {
-                var usuarioId = await _usuarioDao.ObterUsuarioIdPorNomeSenha(usuario.Nome, usuario.Senha);
+                var hash = Argon2EncryptHash.HashPassword(usuario.Senha);
+                var hashSenhaBase64 = Convert.ToBase64String(hash);
+
+                var usuarioId = await _usuarioDao.ObterUsuarioIdPorNomeSenha(usuario.Nome, hashSenhaBase64);
+
                 return Ok(new UsuarioIdDto
                 {
                     Id = usuarioId
