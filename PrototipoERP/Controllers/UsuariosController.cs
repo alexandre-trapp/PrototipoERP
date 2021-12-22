@@ -47,7 +47,7 @@ namespace PrototipoERP.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioIdDto))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
-        public async Task<ActionResult<UsuarioIdDto>> ObterUsuarioId(UsuarioDto usuario)
+        public async Task<ActionResult<UsuarioIdDto>> ObterUsuarioId([FromBody] UsuarioDto usuario)
         {
             try
             {
