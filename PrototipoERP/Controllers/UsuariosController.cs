@@ -42,7 +42,7 @@ namespace PrototipoERP.Controllers
         }
 
         // GET: api/usuarios
-        [HttpGet("usuarios")]
+        [HttpGet("usuarios/id")]
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioIdDto))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
