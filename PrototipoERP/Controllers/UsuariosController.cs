@@ -41,6 +41,32 @@ namespace PrototipoERP.Controllers
             }
         }
 
+        // GET: api/usuarios
+        [HttpGet("usuarios")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UsuarioIdDto))]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
+        public async Task<ActionResult<UsuarioIdDto>> ObterUsuarioId(UsuarioDto usuario)
+        {
+            try
+            {
+                var usuarioId = await _usuarioDao.ObterUsuarioIdPorNomeSenha(usuario.Nome, usuario.Senha);
+                return Ok(new UsuarioIdDto
+                {
+                    Id = usuarioId
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseError { Message = ex.Message });
+            }
+        }
+
         // GET: api/usuarios/{1}
         [HttpGet("usuarios/{id}")]
         [Authorize]

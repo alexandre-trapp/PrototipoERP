@@ -45,6 +45,14 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
         public async Task<bool> Exists(long id) =>
             await _dbContext.Usuarios.AnyAsync(x => x.Id == id);
 
+        public async Task<long> ObterUsuarioIdPorNomeSenha(string nome, string senha) =>
+            await _dbContext.Usuarios
+                .Where(x =>
+                    x.Nome == nome &&
+                    x.Senha == senha)
+                .Select(x => x.Id)
+                .FirstOrDefaultAsync();
+
         public async Task<Usuario> ObterUsuarioPorNomeSenha(string nome, string senha) =>
             await _dbContext.Usuarios
                 .FirstOrDefaultAsync(x => 
