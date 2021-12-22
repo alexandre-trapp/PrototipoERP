@@ -3,6 +3,7 @@ using PrototipoERP.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using PrototipoERP.Infraestrutura.Database.Daos;
+using PrototipoERP.Infraestrutura.Database.Dtos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,10 +27,10 @@ namespace PrototipoERP.Controllers
         // GET: api/lembretes
         [HttpGet("lembretes")]
         [Authorize]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Lembrete))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TodosLembretesDto))]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ResponseError))]
-        public async Task<ActionResult<IEnumerable<Lembrete>>> ObterLembretes()
+        public async Task<ActionResult<IEnumerable<TodosLembretesDto>>> ObterLembretes()
         {
             try
             {
