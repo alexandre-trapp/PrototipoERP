@@ -2,12 +2,12 @@
 
 namespace PrototipoERP.Infraestrutura.Database.Daos
 {
-    public interface IEntityDao<T> where T : Entity
+    public interface IEntityDao<T> where T : Entidades.Entity
     {
-        public Task Create(Entity entity);
-        public Task Update(Entity entity);
-        public Task<Entity> GetById(long id);
+        public Task Create(Entidades.Entity entity);
+        public Task Update(Entidades.Entity entity);
+        public Task<Entidades.Entity> GetById(long id);
         public Task<bool> Exists(long id);
-        public Task<IEnumerable<Entity>> GetAll();
+        public Task<IEnumerable<Entidades.Entity>> GetAll();
     }
 }

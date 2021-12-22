@@ -9,13 +9,13 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
         public UsuarioDao(ApplicationDbContext dbContext) =>
             _dbContext = dbContext;
 
-        public async Task Create(Entity entity)
+        public async Task Create(Entidades.Entity entity)
         {
             await _dbContext.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task Update(Entity entity)
+        public async Task Update(Entidades.Entity entity)
         {
             if (entity.Id == null || entity.Id <= 0)
                 throw new OperationCanceledException($"Id do lembrete={entity.Id} inválido para atualização na base de dados.");
@@ -24,7 +24,7 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<Entity> GetById(long id)
+        public async Task<Entidades.Entity> GetById(long id)
         {
             var usuario = await _dbContext.Usuarios.FindAsync(id);
             if (usuario == null)
@@ -33,7 +33,7 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
             return usuario;
         }
 
-        public async Task<IEnumerable<Entity>> GetAll()
+        public async Task<IEnumerable<Entidades.Entity>> GetAll()
         {
             var usuarios = await _dbContext.Usuarios.ToListAsync();
             if (usuarios == null)

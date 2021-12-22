@@ -1,5 +1,7 @@
-﻿using PrototipoERP.Entidades;
+﻿using Dapper;
+using PrototipoERP.Entidades;
 using Microsoft.EntityFrameworkCore;
+using PrototipoERP.Infraestrutura.Database.Dtos;
 
 namespace PrototipoERP.Infraestrutura.Database.Daos
 {
@@ -9,13 +11,13 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
         public LembreteDao(ApplicationDbContext dbContext) =>
             _dbContext = dbContext;
 
-        public async Task Create(Entity entity)
+        public async Task Create(Entidades.Entity entity)
         {
             await _dbContext.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task Update(Entity entity)
+        public async Task Update(Entidades.Entity entity)
         {
             if (entity.Id <= 0)
                 throw new OperationCanceledException($"Id do lembrete={entity.Id} inválido para atualização na base de dados.");
@@ -24,7 +26,7 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<Entity> GetById(long id)
+        public async Task<Entidades.Entity> GetById(long id)
         {
             var lembrete = await _dbContext.Lembretes.FindAsync(id);
             if (lembrete == null)
@@ -33,13 +35,22 @@ namespace PrototipoERP.Infraestrutura.Database.Daos
             return lembrete;
         }
 
-        public async Task<IEnumerable<Entity>> GetAll()
+        public async Task<IEnumerable<Entidades.Entity>> GetAll()
         {
-            var usuarios = await _dbContext.Lembretes.ToListAsync();
-            if (usuarios == null)
-                return new List<Lembrete>();
+            var lembretes = await _dbContext.Database.GetDbConnection()
+                            .QueryAsync<TodosLembretesDto>(
+                                @"SELECT a.id Id,
+                                         a.usuario_id UsuarioId, 
+                                         a.texto Texto,
+                                         a.data_hora DataHora
+                                         b.nome Usuario
+                                  FROM lembretes a
+                                       INNER JOIN usuarios b ON(b.id = a.usuario_id)");
 
-            return usuarios;
+            if (lembretes == null)
+                return new List<TodosLembretesDto>();
+
+            return lembretes;
         }
 
         public async Task<IEnumerable<Lembrete>> ListarLembretesPorUsuario(long usuarioId)
